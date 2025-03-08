@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from app.database import db
 from app.routes import task_bp  # Importing API Routes
 from flask_jwt_extended import JWTManager
@@ -23,5 +23,10 @@ def create_app():
 
     app.register_blueprint(task_bp, url_prefix="/tasks")  # Register Routes
     app.register_blueprint(auth_bp, url_prefix="/auth")
+
+    @app.route("/")
+    def home():
+        return jsonify({"message": "Welcome to the Task Manager API! Use /auth and /tasks."})
+
 
     return app
