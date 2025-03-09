@@ -3,10 +3,11 @@ from app.database import db
 from app.routes import task_bp  # Importing API Routes
 from flask_jwt_extended import JWTManager
 from app.auth import auth_bp
-import os 
+import os
 from dotenv import load_dotenv
 
 load_dotenv()
+
 
 def create_app():
     app = Flask(__name__)  # Initialize Flask App
@@ -26,7 +27,8 @@ def create_app():
 
     @app.route("/")
     def home():
-        return jsonify({"message": "Welcome to the Task Manager API! Use /auth and /tasks."})
-
+        return jsonify(
+            {"message": "Welcome to the Task Manager API! Use /auth and /tasks."}
+        )
 
     return app
